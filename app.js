@@ -4,6 +4,7 @@
 
 	const mongoose = require('mongoose') // 載入 mongoose
 	const exphbs = require('express-handlebars');
+	const Dinner = require('./models/dinner') // 載入 dinner model
 
 	// 設定連線到 mongoDB
 	mongoose.connect('mongodb://localhost/dinnerList', {
@@ -28,7 +29,14 @@
 	app.set('view engine', 'hbs')
 
 	app.get('/', (req, res) => {
-	    res.render('index')
+	    // 取出 Dinner model 裡的所有資料
+	    Dinner.find()
+	        // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+	        .lean()
+	        // 將資料傳給 index 樣板
+	        .then(dinners => res.render('index', { dinners }))
+	        // 錯誤處理
+	        .catch(error => console.error(error))
 	})
 
 	app.listen(port, () => {
