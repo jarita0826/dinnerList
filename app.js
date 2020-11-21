@@ -41,10 +41,12 @@
 	        .catch(error => console.error(error))
 	})
 
+	//進入新增資料頁面
 	app.get('/dinners/new', (req, res) => {
 	    return res.render('new')
 	})
 
+	//遞交新增資料
 	app.post('/dinners', (req, res) => {
 	    const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
 
@@ -62,6 +64,15 @@
 	        })
 	        // 新增完成後導回首頁
 	        .then(() => res.redirect('/'))
+	        .catch(error => console.log(error))
+	})
+
+	//瀏覽餐廳詳細資料
+	app.get('/dinners/:id', (req, res) => {
+	    const id = req.params.id
+	    return Dinner.findById(id)
+	        .lean()
+	        .then((dinner) => res.render('show', { dinner }))
 	        .catch(error => console.log(error))
 	})
 
