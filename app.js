@@ -5,7 +5,7 @@
 	const mongoose = require('mongoose') // 載入 mongoose
 
 	// 設定連線到 mongoDB
-	mongoose.connect('mongodb://localhost/todo-list', {
+	mongoose.connect('mongodb://localhost/dinnerList', {
 	    useNewUrlParser: true,
 	    useUnifiedTopology: true
 	})
