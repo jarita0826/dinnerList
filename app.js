@@ -3,6 +3,7 @@
 	const port = 3000
 
 	const mongoose = require('mongoose') // 載入 mongoose
+	const exphbs = require('express-handlebars');
 
 	// 設定連線到 mongoDB
 	mongoose.connect('mongodb://localhost/dinnerList', {
@@ -23,8 +24,11 @@
 	    console.log('mongodb connected!')
 	})
 
+	app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+	app.set('view engine', 'hbs')
+
 	app.get('/', (req, res) => {
-	    res.send(`This is my first Express Web App`)
+	    res.render('index')
 	})
 
 	app.listen(port, () => {
