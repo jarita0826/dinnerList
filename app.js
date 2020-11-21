@@ -3,7 +3,8 @@
 	const port = 3000
 
 	const mongoose = require('mongoose') // 載入 mongoose
-	const exphbs = require('express-handlebars');
+	const exphbs = require('express-handlebars')
+	const bodyParser = require('body-parser')
 	const Dinner = require('./models/dinner') // 載入 dinner model
 
 	// 設定連線到 mongoDB
@@ -27,6 +28,7 @@
 
 	app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 	app.set('view engine', 'hbs')
+	app.use(bodyParser.urlencoded({ extended: true }))
 
 	app.get('/', (req, res) => {
 	    // 取出 Dinner model 裡的所有資料
@@ -37,6 +39,30 @@
 	        .then(dinners => res.render('index', { dinners }))
 	        // 錯誤處理
 	        .catch(error => console.error(error))
+	})
+
+	app.get('/dinners/new', (req, res) => {
+	    return res.render('new')
+	})
+
+	app.post('/dinners', (req, res) => {
+	    const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+
+	    // 存入資料庫
+	    return Dinner.create({
+	            name,
+	            name_en,
+	            category,
+	            image,
+	            location,
+	            phone,
+	            google_map,
+	            rating,
+	            description
+	        })
+	        // 新增完成後導回首頁
+	        .then(() => res.redirect('/'))
+	        .catch(error => console.log(error))
 	})
 
 	app.listen(port, () => {
