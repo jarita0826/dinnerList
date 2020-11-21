@@ -38,12 +38,19 @@
                 {{this.rating}}
                 <i class="fas fa-star"></i>
               </span>
-
             </div>
+            
           </div>
+          
         </a>
+        <a href="./dinners/{{ this._id }}/edit">edit</a>
+        <form action="./dinners/{{ this._id }}/delete" method="POST" style="display: inline;">
+          <button type="submit">delete</button>
+        </form>
         {{/each}}
+        
       </div>
+      
     </div>
   </div>
 </div>

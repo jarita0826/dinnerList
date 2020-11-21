@@ -1,0 +1,16 @@
+<form action="/dinners/{{ dinner._id }}/edit" method="POST">
+  <input type="text" name="name" placeholder="餐廳中文名稱" value="{{ dinner.name }}" style="display: block; margin: 10px;">
+  <input type="text" name="name_en" placeholder="input restaurant English name"
+   value="{{ dinner.name_en }}" style="display: block; margin: 10px; width: 250px;">
+  <input type="text" name="category" placeholder="input category" value="{{ dinner.category }}" style="display: block; margin: 10px;">
+  
+  <input type="text" name="image" value="{{ dinner.image }}" style="display: block; margin: 10px;">
+  
+  <input type="text" name="location" placeholder="input location" value="{{ dinner.location }}" style="display: block; margin: 10px;width: 400px;">
+  <input type="text" name="phone" placeholder="input phone" value="{{ dinner.phone }}" style="display: block; margin:10px;">
+  <input type="text" name="google_map" placeholder="google_map" value="{{ dinner.google_map }}" style="display: block; margin:10px;">
+  <input type="number" name="rating" placeholder="0~5" step="0.1" min="0" max="5"  value="{{ dinner.rating }}" style="display: block; margin:10px;">
+  <input type="text" name="description" placeholder="input description" value="{{ dinner.description }}" style="display: block; margin:10px;">
+  <button type="submit">Save</button>
+  <a href="/">back</a>
+</form>

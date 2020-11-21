@@ -76,6 +76,46 @@
 	        .catch(error => console.log(error))
 	})
 
+	//進入修改餐廳資料頁面
+	app.get('/dinners/:id/edit', (req, res) => {
+	    const id = req.params.id
+	    return Dinner.findById(id)
+	        .lean()
+	        .then((dinner) => res.render('edit', { dinner }))
+	        .catch(error => console.log(error))
+	})
+
+	//將重新編輯餐廳資料上傳並更新
+	app.post('/dinners/:id/edit', (req, res) => {
+	    const id = req.params.id
+	    const {
+	        name,
+	        name_en,
+	        category,
+	        image,
+	        location,
+	        phone,
+	        google_map,
+	        rating,
+	        description
+	    } = req.body
+	    return Dinner.findById(id)
+	        .then(dinner => {
+	            dinner.name = name
+	            dinner.name_en = name_en
+	            dinner.category = category
+	            dinner.image = image
+	            dinner.location = location
+	            dinner.phone = phone
+	            dinner.google_map = google_map
+	            dinner.rating = rating
+	            dinner.description = description
+	            return dinner.save()
+	        })
+	        .then(() => res.redirect(`/dinners/${id}`))
+	        .catch(error => console.log(error))
+	})
+
 	app.listen(port, () => {
 	    console.log(`Express is running on http://localhost:${port}`)
 	})
