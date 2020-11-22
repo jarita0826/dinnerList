@@ -2,6 +2,12 @@
 <h1 class="mb-1 restaurant-show-title">{{dinner.name}}</h1>
 <div class="container">
   <div class="row">
+    <div class="col-12 col-md-10 mx-auto text-right">
+      <a type="button" class="btn btn-outline-secondary btn-sm" href="/dinners/{{ dinner._id }}/edit">edit</a>
+      <form action="/dinners/{{ dinner._id }}/delete" method="POST" style="display: inline;">
+        <button type="submit" class="btn btn-outline-warning btn-sm">delete</button>
+      </form>
+    </div>
     <div class="col-12 col-md-10 mx-auto">
 
       <p class="mb-1">
@@ -39,15 +45,11 @@
 
       <p class="mb-1">
         <span class="text-secondary">
-          <a class="back" type="button" onclick="history.back()" value="回到上一頁" target="_blank">
-          <i class="fas fa-angle-double-left"></i>
-          回上一頁
-          </a>
+          <a class="back" type="button" href="/"><i class="fas fa-angle-double-left"></i>
+           回到上一頁
+           </a>
         </span>
-        <a href="./dinners/{{ this._id }}/edit">edit</a>
       </p>
     </div>
   </div>
 </div>
-
-<a href="/">back</a>

@@ -36,10 +36,11 @@ header {
     font-size: 0.8rem;
 }
 
-.btn-major {
+
+/* .btnmajor {
     background-color: #C8AE70;
     color: white;
-}
+} */
 
 .form-control:focus {
     box-shadow: none;

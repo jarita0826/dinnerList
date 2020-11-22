@@ -29,6 +29,7 @@
 	app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 	app.set('view engine', 'hbs')
 	app.use(bodyParser.urlencoded({ extended: true }))
+	app.use(express.static('public'))
 
 	app.get('/', (req, res) => {
 	    // 取出 Dinner model 裡的所有資料
@@ -115,6 +116,16 @@
 	        .then(() => res.redirect(`/dinners/${id}`))
 	        .catch(error => console.log(error))
 	})
+
+	//刪除功能
+	app.post('/dinners/:id/delete', (req, res) => {
+	    const id = req.params.id
+	    return Dinner.findById(id)
+	        .then(dinner => dinner.remove())
+	        .then(() => res.redirect('/'))
+	        .catch(error => console.log(error))
+	})
+
 
 	app.listen(port, () => {
 	    console.log(`Express is running on http://localhost:${port}`)
