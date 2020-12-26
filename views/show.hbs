@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-12 col-md-10 mx-auto text-right">
       <a type="button" class="btn btn-outline-secondary btn-sm" href="/dinners/{{ dinner._id }}/edit">edit</a>
-      <form action="/dinners/{{ dinner._id }}/delete" method="POST" style="display: inline;">
+      <form action="/dinners/{{ dinner._id }}?_method=DELETE" method="POST" style="display: inline;">
         <button type="submit" class="btn btn-outline-warning btn-sm">delete</button>
       </form>
     </div>

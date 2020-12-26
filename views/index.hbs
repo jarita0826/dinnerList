@@ -44,7 +44,7 @@
               </span>
               <div class="text-right">
                 <a  type="button" class="btn btn-outline-secondary btn-sm" href="./dinners/{{ this._id }}/edit">編輯</a>
-                <form action="./dinners/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <form action="./dinners/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                   <button type="submit" class="btn btn-outline-warning btn-sm">刪除</button>
                 </form>
               </div>
